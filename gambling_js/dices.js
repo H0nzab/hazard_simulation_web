@@ -34,7 +34,7 @@ function initialize() {
         y: {
           beginAtZero: true,
           ticks: {
-            stepSize: 1 // Ensure the scale fits the data increments nicely
+            stepSize: 1 
           }
         }
       },
@@ -43,15 +43,15 @@ function initialize() {
           enabled: true,
           callbacks: {
             label: function (context) {
-              const value = context.raw; // Exact value of the bar
+              const value = context.raw;
               return `Occurrences: ${value}`;
             }
           }
         }
       },
       interaction: {
-        mode: 'nearest', // Highlight the nearest bar
-        axis: 'x',       // Interaction limited to x-axis
+        mode: 'nearest', 
+        axis: 'x',      
         intersect: false
       }
     }
@@ -73,16 +73,14 @@ function rollSingleDie() {
     const result2 = rollSingleDie();
     
     const sum = result1 + result2;
-  
-    // Update myStats
+    
+    //dataset update
     myStats[sum] += 1;
 
-    // Update dice visuals
     die1.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result1)}" style="font-size: 3.5rem"></i>`;
     die2.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result2)}" style="font-size: 3.5rem"></i>`;
     disSum.innerHTML = "Sum: " + sum;
     
-    // Add animation class
     die1.classList.add("roll");
     die2.classList.add("roll");
     
@@ -99,7 +97,6 @@ function rollSingleDie() {
     myChart.update();
   }
   
-  // Helper function to get font-awesome dice face name
   function getDieFace(value) {
     const faces = ["one", "two", "three", "four", "five", "six"];
     return faces[value - 1];
