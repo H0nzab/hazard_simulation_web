@@ -51,7 +51,7 @@ function initialize() {
 initialize();
 
 function selectBet(betType) {
-    if (isBettingResolved) return; // Disable betting if a game is resolved
+    if (isBettingResolved) return;
 
     const betButtons = document.querySelectorAll(".bet-button");
     betButtons.forEach(btn => btn.classList.remove("selected"));

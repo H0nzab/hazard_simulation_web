@@ -42,10 +42,14 @@
           <h2>Balance: $<span id="balance">5000</span></h2>
         </header>
         <section class="betting">
-          <button id="passLineBtn" class="btn bet-button" onclick="selectBet('pass')">Pass Line</button>
-          <button id="dontPassLineBtn" class="btn bet-button" onclick="selectBet('dontPass')">Don't Pass Line</button>
-          <button id="comeBtn" class="btn bet-button" onclick="selectBet('come')" disabled>Come</button>
-          <button id="dontComeBtn" class="btn bet-button" onclick="selectBet('dontCome')" disabled>Don't Come</button>
+          <section class="passLine">
+            <button id="passLineBtn" class="btn bet-button" onclick="selectBet('pass')">Pass Line</button>
+            <button id="dontPassLineBtn" class="btn bet-button" onclick="selectBet('dontPass')">Don't Pass Line</button>
+          </section>
+          <section class="comeBet">
+            <button id="comeBtn" class="btn bet-button" onclick="selectBet('come')" disabled>Come</button>
+            <button id="dontComeBtn" class="btn bet-button" onclick="selectBet('dontCome')" disabled>Don't Come</button>
+          </section> 
         </section>        
         <section class="status">
           <h3 id="gameStatus"></h3>
