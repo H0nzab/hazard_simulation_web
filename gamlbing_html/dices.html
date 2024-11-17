@@ -15,25 +15,44 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <section class="dices">
-      <h1>Animated Dice Roll</h1>
-      <p>Click the button to roll the dice.</p>
-      <h1 id="sum">7</h1>
-      <div class="dice" id="dice">
-        <div class="die" id="die1">
-          <i class="fa-solid fa-dice-one" style="font-size: 3.5rem"></i>
-        </div>
-        <div class="die" id="die2">
-          <i class="fa-solid fa-dice-six" style="font-size: 3.5rem"></i>
-        </div>
+    <div class="container">
+      <!-- Left Side: Dice and Chart -->
+      <div class="left-side">
+        <section class="dices">
+          <h1>Animated Dice Roll</h1>
+          <p>Click the button to roll the dice.</p>
+          <h1 id="sum">7</h1>
+          <div class="dice" id="dice">
+            <div class="die" id="die1">
+              <i class="fa-solid fa-dice-one" style="font-size: 3.5rem"></i>
+            </div>
+            <div class="die" id="die2">
+              <i class="fa-solid fa-dice-six" style="font-size: 3.5rem"></i>
+            </div>
+          </div>
+        </section>
+        <section class="chart">
+          <canvas id="myChart"></canvas>
+        </section>
       </div>
-    </section>
-    <button class="btn" onclick="rollDice()">Roll Dice</button>
-    <button class="btn" onclick="rollDiceHundred()">Roll Dice 100x</button>
-    <section class="chart">
-      <canvas id="myChart"></canvas>
-    </section>
 
+      <!-- Middle: Game Info -->
+      <div class="middle">
+        <header>
+          <h2>Balance: $<span id="balance">5000</span></h2>
+        </header>
+        <section class="betting">
+          <button id="passLineBtn" class="btn" onclick="selectBet('pass')">Pass Line</button>
+          <button id="dontPassLineBtn" class="btn" onclick="selectBet('dontPass')">Don't Pass Line</button>
+        </section>
+        <section class="status">
+          <h3 id="gameStatus"></h3>
+        </section>
+        <button class="btn" onclick="rollDice()">Roll Dice</button>
+        <button class="btn" onclick="rollDiceHundred()">Roll Dice 100x</button>
+      </div>
+    </div>
+    
     <script src="/gambling_js/dices.js"></script>
   </body>
 </html>
