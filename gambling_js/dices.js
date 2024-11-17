@@ -141,6 +141,19 @@ function rollSingleDie() {
     updateChart();
   }
 
+  function rollDiceThousand(){
+    for (let i = 0; i < 1000; i++) {
+      const result1 = rollSingleDie();
+      const result2 = rollSingleDie();
+      
+      const sum = result1 + result2;
+    
+      myStats[sum] += 1;
+    }    
+    updateChart();
+  }
+
+
   function resolveBet(sum) {
     const status = document.getElementById("gameStatus");
     if (currentBet === "pass") {
