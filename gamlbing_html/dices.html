@@ -15,6 +15,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <header>
+      <h2>Balance: $<span id="balance">5000</span></h2>
+    </header>
+    <section class="betting">
+      <button id="passLineBtn" class="btn" onclick="selectBet('pass')">Pass Line</button>
+      <button id="dontPassLineBtn" class="btn" onclick="selectBet('dontPass')">Don't Pass Line</button>
+    </section>
+    <section class="status">
+      <h3 id="gameStatus"></h3>
+    </section>
     <section class="dices">
       <h1>Animated Dice Roll</h1>
       <p>Click the button to roll the dice.</p>
