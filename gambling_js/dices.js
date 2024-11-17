@@ -107,6 +107,12 @@ function rollSingleDie() {
 
   function rollDiceHundred(){
     for (let i = 0; i < 100; i++) {
-      rollDice();      
-    }
+      const result1 = rollSingleDie();
+      const result2 = rollSingleDie();
+      
+      const sum = result1 + result2;
+    
+      myStats[sum] += 1;
+    }    
+    updateChart();
   }
