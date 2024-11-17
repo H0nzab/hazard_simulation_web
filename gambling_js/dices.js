@@ -1,6 +1,6 @@
 let myStats = { 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0 };
 let balance = 5000;
-let currentBet = null; // 'pass' or 'dontPass'
+let currentBet = null; // 'pass', 'dontPass', 'come', 'dontCome'
 let point = null; // point - target
 let isBettingResolved = false;
 let myChart;
@@ -53,20 +53,18 @@ initialize();
 function selectBet(betType) {
     if (isBettingResolved) return; // Disable betting if a game is resolved
 
-    const passBtn = document.getElementById("passLineBtn");
-    const dontPassBtn = document.getElementById("dontPassLineBtn");
+    const betButtons = document.querySelectorAll(".bet-button");
+    betButtons.forEach(btn => btn.classList.remove("selected"));
 
-    if (betType === "pass") {
-        passBtn.classList.add("selected");
-        dontPassBtn.classList.remove("selected");
-        currentBet = "pass";
-    } else {
-        passBtn.classList.remove("selected");
-        dontPassBtn.classList.add("selected");
-        currentBet = "dontPass";
+    if (betType === "pass" || betType === "dontPass") {
+        document.getElementById(`${betType}LineBtn`).classList.add("selected");
+        currentBet = betType;
+    } else if ((betType === "come" || betType === "dontCome") && point !== null) {
+        document.getElementById(`${betType}Btn`).classList.add("selected");
+        currentBet = betType;
     }
 
-    document.getElementById("gameStatus").innerText = `Bet placed: ${betType === 'pass' ? 'Pass Line' : "Don't Pass Line"}`;
+    document.getElementById("gameStatus").innerText = `Bet placed: ${betType.replace(/([A-Z])/g, ' $1')}`;
 }
 
 function rollSingleDie() {
@@ -137,16 +135,16 @@ function rollDiceThousand() {
 
 function resolveBet(sum) {
     const status = document.getElementById("gameStatus");
-    if (currentBet === "pass") {
+    if (currentBet === "pass" || currentBet === "come") {
         if (point === null) {
             // Come-out roll
             if (sum === 7 || sum === 11) {
                 balance += 100; // Win
-                status.innerText = "You won the Pass Line bet!";
+                status.innerText = `You won the ${currentBet === "pass" ? "Pass Line" : "Come"} bet!`;
                 resetGame();
             } else if (sum === 2 || sum === 3 || sum === 12) {
                 balance -= 100; // Loss
-                status.innerText = "You lost the Pass Line bet!";
+                status.innerText = `You lost the ${currentBet === "pass" ? "Pass Line" : "Come"} bet!`;
                 resetGame();
             } else {
                 point = sum;
@@ -156,24 +154,24 @@ function resolveBet(sum) {
             // Point roll
             if (sum === point) {
                 balance += 100; // Win
-                status.innerText = "You hit the point and won the Pass Line bet!";
+                status.innerText = `You hit the point and won the ${currentBet === "pass" ? "Pass Line" : "Come"} bet!`;
                 resetGame();
             } else if (sum === 7) {
                 balance -= 100; // Loss
-                status.innerText = "You rolled a 7 and lost the Pass Line bet!";
+                status.innerText = `You rolled a 7 and lost the ${currentBet === "pass" ? "Pass Line" : "Come"} bet!`;
                 resetGame();
             }
         }
-    } else if (currentBet === "dontPass") {
+    } else if (currentBet === "dontPass" || currentBet === "dontCome") {
         if (point === null) {
             // Come-out roll
             if (sum === 2 || sum === 3) {
                 balance += 100; // Win
-                status.innerText = "You won the Don't Pass Line bet!";
+                status.innerText = `You won the ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} bet!`;
                 resetGame();
             } else if (sum === 7 || sum === 11) {
                 balance -= 100; // Loss
-                status.innerText = "You lost the Don't Pass Line bet!";
+                status.innerText = `You lost the ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} bet!`;
                 resetGame();
             } else {
                 point = sum;
@@ -183,11 +181,11 @@ function resolveBet(sum) {
             // Point roll
             if (sum === 7) {
                 balance += 100; // Win
-                status.innerText = "You rolled a 7 and won the Don't Pass Line bet!";
+                status.innerText = `You rolled a 7 and won the ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} bet!`;
                 resetGame();
             } else if (sum === point) {
                 balance -= 100; // Loss
-                status.innerText = "You hit the point and lost the Don't Pass Line bet!";
+                status.innerText = `You hit the point and lost the ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} bet!`;
                 resetGame();
             }
         }
@@ -203,9 +201,11 @@ function resetGame() {
     currentBet = null;
     isBettingResolved = false;
 
-    document.getElementById("passLineBtn").classList.remove("selected");
-    document.getElementById("dontPassLineBtn").classList.remove("selected");
+    const betButtons = document.querySelectorAll(".bet-button");
+    betButtons.forEach(btn => btn.classList.remove("selected"));
 
     document.getElementById("passLineBtn").disabled = false;
     document.getElementById("dontPassLineBtn").disabled = false;
+    document.getElementById("comeBtn").disabled = true;
+    document.getElementById("dontComeBtn").disabled = true;
 }
