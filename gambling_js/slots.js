@@ -34,4 +34,4 @@ function spin() {
     accountBalance += winPoints; 
     
     document.getElementById('result').innerText = `${resultText} \nVýhra: ${winPoints} bodů`; 
-    document.getElementById('account').innerText = `Stav účtu: ${accountBalance} Kč`; }
+    document.getElementById('account').innerText = `Stav účtu: ${accountBalance}`; }
