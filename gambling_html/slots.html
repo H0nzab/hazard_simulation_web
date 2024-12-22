@@ -20,16 +20,10 @@
       <div class="left-side">
         <section class="slot-machine">
           <h1>Hrací Automat</h1>
-          <div class="slots">
-            <div class="slot" id="slot1">
-              <i class="fa-solid fa-cherry" style="font-size: 3.5rem"></i>
-            </div>
-            <div class="slot" id="slot2">
-              <i class="fa-solid fa-bell" style="font-size: 3.5rem"></i>
-            </div>
-            <div class="slot" id="slot3">
-              <i class="fa-solid fa-lemon" style="font-size: 3.5rem"></i>
-            </div>
+          <div style="display: flex; justify-content: center; gap: 10px; font-size: 2rem;">
+            <div id="slot1" class="slot">❔</div>
+            <div id="slot2" class="slot">❔</div>
+            <div id="slot3" class="slot">❔</div>
           </div>
           <button class="btn" onclick="spin()">Roztočit</button>
           <div id="result" class="status"></div>

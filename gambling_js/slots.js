@@ -1,37 +1,47 @@
-const reelSymbols = [   ['🍒', '🍒', '🍒', '🍒', '🍒', '🍒', '🔔', '🔔', '🔔', '🍋', '🍋', '🍋', '⭐', '⭐', '⭐', '🍉', '🍉', '🍉', '7️⃣', 'BAR'],
-                        ['🍉', '🍉', '🍉', '🍊', '🍊', '🍊', '🍋', '🍋', '🍋', '🍓', '🍓', '🍓', '7️⃣', '7️⃣', '7️⃣', 'BAR', 'BAR', 'BAR', '🍇', '⭐'], 
-                        ['BAR', 'BAR', 'BAR', '🔔', '🔔', '🔔', '🍇', '🍇', '🍇', '🍓', '🍓', '🍓', '🍊', '🍊', '🍊', '🍉', '🍉', '🍉', '🍋', '🍒'] ];
-
-const winCombinations = { 
-    '🍒 🍒 🍒': 10, 
-    '🔔 🔔 🔔': 10, 
-    '🍋 🍋 🍋': 10, 
-    '⭐ ⭐ ⭐': 10, 
-    '🍉 🍉 🍉': 10, 
-    '🍊 🍊 🍊': 50, 
-    '🍓 🍓 🍓': 50, 
-    '7️⃣ 7️⃣ 7️⃣': 100, 
-    'BAR BAR BAR': 100};
+const symbols = ['🍒', '🔔', '🍋', '⭐', '🍉', '🍊', '🍓', '7️⃣', 'BAR'];
+const winCombinations = {
+    3: { '🍒': 10, '🔔': 10, '🍋': 10, '⭐': 10, '🍉': 10, '🍊': 50, '🍓': 50, '7️⃣': 100, 'BAR': 100 },
+    2: { '🍒': 5, '🔔': 5, '🍋': 5, '⭐': 5, '🍉': 5 }
+};
 
 let accountBalance = 500;
-function spin() { 
 
-    if (accountBalance < 10) 
-        { 
-            alert('Nemáte dostatek kreditů pro další hru.'); 
-            return; 
-        } 
+function spin() {
+    if (accountBalance < 10) {
+        alert('Nemáte dostatek kreditů pro další hru.');
+        return;
+    }
 
-    accountBalance -= 10; 
+    accountBalance -= 10;
 
-    const result = reelSymbols.map(reel => { 
-        const randomIndex = Math.floor(Math.random() * reel.length); 
-        return reel[randomIndex]; 
-    }); 
+    // Vygeneruj náhodné symboly pro tři sloty
+    const result = Array.from({ length: 3 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
 
-    const resultText = result.join(' '); 
-    const winPoints = winCombinations[resultText] || 0; 
-    accountBalance += winPoints; 
-    
-    document.getElementById('result').innerText = `${resultText} \nVýhra: ${winPoints} bodů`; 
-    document.getElementById('account').innerText = `Stav účtu: ${accountBalance}`; }
+    // Aktualizuj sloty na stránce
+    document.getElementById('slot1').innerText = result[0];
+    document.getElementById('slot2').innerText = result[1];
+    document.getElementById('slot3').innerText = result[2];
+
+    // Spočítej výskyt jednotlivých symbolů
+    const symbolCounts = result.reduce((acc, symbol) => {
+        acc[symbol] = (acc[symbol] || 0) + 1;
+        return acc;
+    }, {});
+
+    // Najdi maximální počet stejných symbolů
+    const maxCount = Math.max(...Object.values(symbolCounts));
+
+    // Zjisti výhru podle počtu stejných symbolů
+    const winPoints = Object.entries(symbolCounts).reduce((win, [symbol, count]) => {
+        if (winCombinations[count] && winCombinations[count][symbol]) {
+            return winCombinations[count][symbol];
+        }
+        return win;
+    }, 0);
+
+    accountBalance += winPoints;
+
+    // Aktualizuj výstup na stránce
+    document.getElementById('result').innerText = `Výhra: ${winPoints} bodů`;
+    document.getElementById('account').innerText = `Stav účtu: ${accountBalance}`;
+}
