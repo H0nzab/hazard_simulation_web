@@ -8,7 +8,7 @@ let accountBalance = 500;
 
 function spin() {
     if (accountBalance < 10) {
-        alert('Nemáte dostatek kreditů pro další hru.');
+        alert('Nemáte dostatek peněz pro další hru.');
         return;
     }
 
@@ -42,6 +42,6 @@ function spin() {
     accountBalance += winPoints;
 
     // Aktualizuj výstup na stránce
-    document.getElementById('result').innerText = `Výhra: ${winPoints} bodů`;
+    document.getElementById('result').innerText = `Výhra: ${winPoints} Kč`;
     document.getElementById('account').innerText = `Stav účtu: ${accountBalance}`;
 }
