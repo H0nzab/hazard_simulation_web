@@ -95,7 +95,7 @@ function rollDice() {
 
     die1.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result1)}" style="font-size: 3.5rem"></i>`;
     die2.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result2)}" style="font-size: 3.5rem"></i>`;
-    disSum.innerHTML = `Sum: ${sum}`;
+    disSum.innerHTML = `Součet: ${sum}`;
     resolveBet(sum);
 
     die1.classList.add("roll");
