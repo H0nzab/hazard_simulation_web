@@ -12,7 +12,7 @@ function initialize() {
         data: {
             labels: Object.keys(myStats),
             datasets: [{
-                label: '# of Occurrences',
+                label: '# četnost',
                 data: Object.values(myStats),
                 borderWidth: 1,
                 /*backgroundColor: 'rgba(75, 255, 192, 0,1)',
@@ -40,7 +40,7 @@ function initialize() {
                     callbacks: {
                         label: function (context) {
                             const value = context.raw;
-                            return `Occurrences: ${value}`;
+                            return `četnost: ${value}`;
                         }
                     }
                 }
