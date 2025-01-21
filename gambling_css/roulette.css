@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 20px;
+    font-size: 2em;
+    color: #ffffff;
+  }
+  
+  .main-container {
+    display: flex;
+    height: calc(100vh - 80px);
+  }
+  
+  #controls {
+    width: 300px;
+    padding: 20px;
+    background-color: #1e1e1e;
+    overflow-y: auto;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .bet {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #333;
+    color: #f0f0f0;
+    transition: background-color 0.2s;
+  }
+  
+  .bet[data-value="red"] {
+    background-color: red;
+  }
+  
+  .bet[data-value="black"] {
+    background-color: black;
+  }
+  
+  .bet:hover {
+    background-color: #555;
+  }
+  
+  #spin {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  #spin:hover {
+    background-color: #0056b3;
+  }
+  
+  #points {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  #result {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  #board {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #board img {
+    height: 50%;
+    transform: rotate(90deg);
+    object-fit: cover;
+  }
+  
