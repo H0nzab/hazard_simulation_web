@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta</title>
+    <link rel="stylesheet" href="/gambling_css/roulette.css">
+  </head>
+  <body>
+    <h1>Ruleta</h1>
+      <div class="main-container">
+        <div id="controls">
+
+          <div id="left">
+            <div class="section">
+              <h2>Barva</h2>
+              <div class="row">
+                <button class="bet" data-type="color" data-value="red" style="background-color: red; color: white;">Červená</button>
+                <button class="bet" data-type="color" data-value="black" style="background-color: black; color: white;">Černá</button>
+              </div>
+            </div>
+            <div class="section">
+              <h2>Parita</h2>
+              <div class="row">
+                <button class="bet" data-type="even" data-value="even">Sudá</button>
+                <button class="bet" data-type="odd" data-value="odd">Lichá</button>
+              </div>
+            </div>
+            <div class="section">
+              <h2>Rozsah</h2>
+              <div class="row">
+                <button class="bet" data-type="range" data-value="first-half">1-18</button>
+                <button class="bet" data-type="range" data-value="second-half">19-36</button>
+              </div>
+            </div>
+          
+            <!-- Ovládací tlačítka -->
+             <div id="maintenance">
+              <button id="spin">Roztočit</button>
+              <button id="reset">Reset</button>
+             </div>
+            
+            <div id="points">Kč: 100</div>
+            <div id="result"></div>
+            <button class="btn" id="home"><a href="/index.html">Domů</a></button>
+          </div>
+          
+          <div id="right">
+              <!-- Grid pro čísla -->
+            <div id="zero" class="number green">0</div>
+            <div id="numbers-grid"></div>
+          </div>
+          
+        </div>
+      </div>
+    <script src="/gambling_js/roulette.js"></script>
+  </body>
+</html>
