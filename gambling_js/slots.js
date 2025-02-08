@@ -8,7 +8,7 @@ const winCombinations = {
 };
 
 // Počáteční stav účtu
-let accountBalance = 500;
+let accountBalance = 1000;
 
 // Počáteční hodnota sázky
 let currentBet = 10;
