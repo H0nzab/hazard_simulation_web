@@ -160,7 +160,7 @@ function resolveBet(sum) {
             // Point roll
             if (sum === point) {
                 balance += 100; // Win
-                status.innerText = `Trefili jste bod a vyhráli jste ${currentBet === "pass" ? "pass line" : "Come"} sázku!`;
+                status.innerText = `Trefili jste bod a vyhráli jste ${currentBet === "pass" ? "pass line" : "come"} sázku!`;
                 resetGame();
             } else if (sum === 7) {
                 balance -= 100; // Loss
