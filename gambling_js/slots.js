@@ -43,5 +43,5 @@ function spin() {
 
     // Aktualizuj výstup na stránce
     document.getElementById('result').innerText = `Výhra: ${winPoints} Kč`;
-    document.getElementById('account').innerText = `Stav účtu: ${accountBalance}`;
+    document.getElementById('account').innerText = `${accountBalance}`;
 }

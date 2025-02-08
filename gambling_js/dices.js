@@ -51,7 +51,7 @@ function rollSingleDie() {
 
 function rollDice() {
     if (!currentBet) {
-        alert("Vyber sázku před hodem kostkou.");
+        alert("Vyberte sázku před hodem kostkou.");
         return;
     }
 
