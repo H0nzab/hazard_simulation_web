@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automaty</title>
+    <title>Hrací Automat</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -30,13 +30,23 @@
         </section>
       </div>
 
-      <!-- Middle: Account Info -->
+      <!-- Middle: Account Info and Betting -->
       <div class="middle">
         <header>
-          <h2>Stav účtu: <span id="account">500</span> Kč</h2>
+          <h2>Stav účtu: <span id="account">500</span></h2>
         </header>
+
+        <!-- Betting Options -->
+        <div class="betting-options">
+          <button class="btn" onclick="setBet(10)">Sázka: 10 Kč</button>
+          <button class="btn" onclick="setBet(20)">Sázka: 20 Kč</button>
+          <button class="btn" onclick="setBet(50)">Sázka: 50 Kč</button>
+          <button class="btn" onclick="setBet(100)">Sázka: 100 Kč</button>
+          <button class="btn" onclick="setBet(200)">Sázka: 200 Kč</button>
+        </div>
       </div>
     </div>
+
     <script src="/gambling_js/slots.js"></script>
   </body>
 </html>
