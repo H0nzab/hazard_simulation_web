@@ -38,9 +38,8 @@ h1 {
 #right {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column; /* Zajištění sloupcového směru */
+  align-items: center; /* Zarovnání nuly na střed */
   padding: 20px;
   background-color: #222;
 }
@@ -62,8 +61,8 @@ h1 {
 
 #left .bet {
   flex: 1;
-  padding: 5px; /* Zmenšené padding */
-  font-size: 14px; /* Zmenšené písmo */
+  padding: 5px;
+  font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 5px;
   cursor: pointer;
@@ -86,13 +85,12 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Styl pro tlačítko Domů */
 .btn a {
   display: block;
-  padding: 10px; /* Upravené padding */
-  font-size: 16px; /* Upravené písmo */
-  background-color: #FF4500; /* Odlišná barva pozadí */
-  color: black; /* Odlišná barva textu */
+  padding: 10px;
+  font-size: 16px;
+  background-color: #FF4500;
+  color: black;
   border-radius: 5px;
   text-align: center;
   text-decoration: none;
@@ -105,7 +103,7 @@ button:hover {
 #zero {
   width: 60px;
   height: 60px;
-  margin: 5px;
+  margin-bottom: 10px; /* Přidána mezera pod nulou */
   background-color: green;
   color: white;
   font-size: 20px;
@@ -117,12 +115,12 @@ button:hover {
 
 #numbers-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 10px;
-  width: 100%;
-  height: 100%;
-  max-height: 75vh; /* Adjusted to fit within the screen */
-  overflow-y: auto; /* allows scrolling for overflow */
+  grid-template-columns: repeat(3, 2fr);
+  justify-items: center; /* Zarovnání čísel pod nulou */
+  gap: 30px;
+  width: auto;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 #numbers-grid button {
@@ -158,14 +156,13 @@ button:hover {
 }
 
 #reset, #spin {
-  width: 48%; /* Upravená šířka tlačítek */
+  width: 48%;
 }
 
 #points {
-  text-align: center; /* Zarovnání textu na střed */
+  text-align: center;
 }
 
-#home{
+#home {
   background-color: #1e1e1e;
 }
-

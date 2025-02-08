@@ -44,24 +44,26 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => handleBet(button));
   });
 
-  // Logika pro sázkové tlačítko
   function handleBet(button) {
     const type = button.dataset.type;
     const value = button.dataset.value;
-
+  
     const existingBet = bets.find(bet => bet.type === type);
     if (existingBet) {
       existingBet.value = value;
     } else {
       bets.push({ type, value });
     }
-
-    // Zvýraznění aktivního tlačítka
+  
+    // Reset stylů všech tlačítek s daným typem
     document.querySelectorAll(`button[data-type="${type}"], #zero`).forEach(btn => {
-      btn.style.opacity = "1"; // Reset opacity
+      btn.style.border = "none"; // Odstranit rámeček
     });
-    button.style.opacity = "0.7"; // Zvýraznit
+  
+    // Přidání modrého rámečku kolem vybraného tlačítka
+    button.style.border = "2px solid blue";
   }
+  
 
   // Roztočení rulety
   spinButton.addEventListener("click", () => {

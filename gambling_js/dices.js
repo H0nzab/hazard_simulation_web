@@ -79,7 +79,7 @@ function rollSingleDie() {
 
 function rollDice() {
     if (!currentBet) {
-        alert("Vyber sázku před hodem kostkou.");
+        alert("Vyberte sázku před hodem kostkou.");
         return;
     }
     const die1 = document.getElementById("die1");
@@ -146,11 +146,11 @@ function resolveBet(sum) {
             // Come-out roll
             if (sum === 7 || sum === 11) {
                 balance += 100; // Win
-                status.innerText = `Vyhrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
+                status.innerText = `vyhráli jste ${currentBet === "pass" ? "pass line" : "come"} sázku!`;
                 resetGame();
             } else if (sum === 2 || sum === 3 || sum === 12) {
                 balance -= 100; // Loss
-                status.innerText = `Prohrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
+                status.innerText = `Prohráli jste ${currentBet === "pass" ? "pass line" : "come"} sázku!`;
                 resetGame();
             } else {
                 point = sum;
@@ -160,11 +160,11 @@ function resolveBet(sum) {
             // Point roll
             if (sum === point) {
                 balance += 100; // Win
-                status.innerText = `Trefil jsi bod a vyhrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
+                status.innerText = `Trefili jste bod a vyhráli jste ${currentBet === "pass" ? "pass line" : "come"} sázku!`;
                 resetGame();
             } else if (sum === 7) {
                 balance -= 100; // Loss
-                status.innerText = `Hodil jsi 7 a prohrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
+                status.innerText = `Hodili jste 7 a prohráli jste ${currentBet === "pass" ? "pass line" : "come"} sázku!`;
                 resetGame();
             }
         }
@@ -173,11 +173,11 @@ function resolveBet(sum) {
             // Come-out roll
             if (sum === 2 || sum === 3) {
                 balance += 100; // Win
-                status.innerText = `Vyhrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
+                status.innerText = `vyhráli jste ${currentBet === "dontPass" ? "don't pass line" : "don't come"} sázku!`;
                 resetGame();
             } else if (sum === 7 || sum === 11) {
                 balance -= 100; // Loss
-                status.innerText = `Prohrál jsi  ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
+                status.innerText = `prohráli jste  ${currentBet === "dontPass" ? "don't pass line" : "don't come"} sázku!`;
                 resetGame();
             } else {
                 point = sum;
@@ -187,11 +187,11 @@ function resolveBet(sum) {
             // Point roll
             if (sum === 7) {
                 balance += 100; // Win
-                status.innerText = `Hodil jsi 7 a vyhrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
+                status.innerText = `Hodili jste 7 a vyhráli jste ${currentBet === "dontPass" ? "don't pass line" : "don't come"} sázku!`;
                 resetGame();
             } else if (sum === point) {
                 balance -= 100; // Loss
-                status.innerText = `Trefil jsi bod a prohrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
+                status.innerText = `Trefili jste bod a prohráli jste ${currentBet === "dontPass" ? "don't pass line" : "don't come"} sázku!`;
                 resetGame();
             }
         }
