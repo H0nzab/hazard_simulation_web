@@ -44,12 +44,12 @@
         </header>
         <section class="betting">
           <section class="passLine">
-            <button id="passLineBtn" class="btn bet-button" onclick="selectBet('pass')">Pass Line</button>
-            <button id="dontPassLineBtn" class="btn bet-button" onclick="selectBet('dontPass')">Don't Pass Line</button>
+            <button id="passLineBtn" class="btn bet-button" onclick="selectBet('pass')">pass line</button>
+            <button id="dontPassLineBtn" class="btn bet-button" onclick="selectBet('dontPass')">don't pass line</button>
           </section>
           <section class="comeBet">
-            <button id="comeBtn" class="btn bet-button" onclick="selectBet('come')" disabled>Come</button>
-            <button id="dontComeBtn" class="btn bet-button" onclick="selectBet('dontCome')" disabled>Don't Come</button>
+            <button id="comeBtn" class="btn bet-button" onclick="selectBet('come')" disabled>come</button>
+            <button id="dontComeBtn" class="btn bet-button" onclick="selectBet('dontCome')" disabled>don't come</button>
           </section> 
         </section>        
         <section class="status">
@@ -57,8 +57,11 @@
         </section>
         <aside class="rollButtons">
           <button class="btn" onclick="rollDice()">Hoď kostkou</button>
-          <button class="btn" onclick="rollDiceHundred()">Hoď 100x</button>
-          <button class="btn" onclick="rollDiceThousand()">Hoď 1000x</button>
+          <div>
+            <button class="btn" onclick="rollDiceHundred()">Hoď 100x</button>
+            <button class="btn" onclick="rollDiceThousand()">Hoď 1000x</button>
+            <p>Házejte kostkami bez vyhodnocení sázek</p>
+          </div>
         </aside>
         
       </div>
