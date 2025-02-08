@@ -56,9 +56,14 @@
           <h3 id="gameStatus"></h3>
         </section>
         <aside class="rollButtons">
-          <button class="btn" onclick="rollDice()">Hoď kostkou</button>
-          <button class="btn" onclick="rollDiceHundred()">Hoď 100x</button>
-          <button class="btn" onclick="rollDiceThousand()">Hoď 1000x</button>
+          <div class="oneThrow">
+            <button class="btn" onclick="rollDice()">Hoď kostkou</button>
+          </div>
+          <div class="multiThrow">
+            <button class="btn" onclick="rollDiceHundred()">Hoď 100x</button>
+            <button class="btn" onclick="rollDiceThousand()">Hoď 1000x</button>
+          </div>
+          <p>U těchto hodů se nevyhodnocuje sázka.</p>
         </aside>
         
       </div>

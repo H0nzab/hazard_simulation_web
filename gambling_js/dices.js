@@ -14,41 +14,13 @@ function initialize() {
             datasets: [{
                 label: '# četnost',
                 data: Object.values(myStats),
-                borderWidth: 1,
-                /*backgroundColor: 'rgba(75, 255, 192, 0,1)',
-                borderColor: 'rgba(75, 255, 192, 1)'*/
-                /*backgroundColor: 'rgba(75, 192, 192, 0.2)', zelená
-                borderColor: 'rgba(75, 192, 192, 1)',*/
-                /*backgroundColor: 'rgba(0, 255, 0, 0.6)', // Jedovatě zelená
-                borderColor: 'rgba(0, 128, 0, 1)'*/
-                backgroundColor: 'rgba(173, 255, 47, 0.6)', // Jasně limetková s průhledností
+                backgroundColor: 'rgba(173, 255, 47, 0.6)',
                 borderColor: 'rgba(124, 252, 0, 1)'
             }]
         },
         options: {
             scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
-                }
-            },
-            plugins: {
-                tooltip: {
-                    enabled: true,
-                    callbacks: {
-                        label: function (context) {
-                            const value = context.raw;
-                            return `četnost: ${value}`;
-                        }
-                    }
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
+                y: { beginAtZero: true, ticks: { stepSize: 1 } }
             }
         }
     });
@@ -82,6 +54,7 @@ function rollDice() {
         alert("Vyber sázku před hodem kostkou.");
         return;
     }
+
     const die1 = document.getElementById("die1");
     const die2 = document.getElementById("die2");
     const disSum = document.getElementById("sum");
@@ -90,9 +63,7 @@ function rollDice() {
     const result2 = rollSingleDie();
     const sum = result1 + result2;
 
-    // dataset update
     myStats[sum] += 1;
-
     die1.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result1)}" style="font-size: 3.5rem"></i>`;
     die2.innerHTML = `<i class="fa-solid fa-dice-${getDieFace(result2)}" style="font-size: 3.5rem"></i>`;
     disSum.innerHTML = `Součet: ${sum}`;
@@ -119,89 +90,67 @@ function getDieFace(value) {
     return faces[value - 1];
 }
 
-function rollDiceHundred() {
-    for (let i = 0; i < 100; i++) {
-        const result1 = rollSingleDie();
-        const result2 = rollSingleDie();
-        const sum = result1 + result2;
-        myStats[sum] += 1;
-    }
-    updateChart();
-}
-
-function rollDiceThousand() {
-    for (let i = 0; i < 1000; i++) {
-        const result1 = rollSingleDie();
-        const result2 = rollSingleDie();
-        const sum = result1 + result2;
-        myStats[sum] += 1;
-    }
-    updateChart();
-}
-
 function resolveBet(sum) {
     const status = document.getElementById("gameStatus");
     if (currentBet === "pass" || currentBet === "come") {
         if (point === null) {
-            // Come-out roll
             if (sum === 7 || sum === 11) {
-                balance += 100; // Win
+                balance += 100;
                 status.innerText = `Vyhrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
                 resetGame();
             } else if (sum === 2 || sum === 3 || sum === 12) {
-                balance -= 100; // Loss
+                balance -= 100;
                 status.innerText = `Prohrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
                 resetGame();
             } else {
                 point = sum;
                 status.innerText = `Bod je nastaven na ${point}. Házej znovu!`;
+                document.getElementById("comeBtn").disabled = false;
+                document.getElementById("dontComeBtn").disabled = false;
             }
         } else {
-            // Point roll
             if (sum === point) {
-                balance += 100; // Win
+                balance += 100;
                 status.innerText = `Trefil jsi bod a vyhrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
                 resetGame();
             } else if (sum === 7) {
-                balance -= 100; // Loss
+                balance -= 100;
                 status.innerText = `Hodil jsi 7 a prohrál jsi ${currentBet === "pass" ? "Pass Line" : "Come"} sázku!`;
                 resetGame();
             }
         }
     } else if (currentBet === "dontPass" || currentBet === "dontCome") {
         if (point === null) {
-            // Come-out roll
             if (sum === 2 || sum === 3) {
-                balance += 100; // Win
+                balance += 100;
                 status.innerText = `Vyhrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
                 resetGame();
             } else if (sum === 7 || sum === 11) {
-                balance -= 100; // Loss
-                status.innerText = `Prohrál jsi  ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
+                balance -= 100;
+                status.innerText = `Prohrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
                 resetGame();
             } else {
                 point = sum;
                 status.innerText = `Bod je nastaven na ${point}. Házej znovu!`;
+                document.getElementById("comeBtn").disabled = false;
+                document.getElementById("dontComeBtn").disabled = false;
             }
         } else {
-            // Point roll
             if (sum === 7) {
-                balance += 100; // Win
+                balance += 100;
                 status.innerText = `Hodil jsi 7 a vyhrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
                 resetGame();
             } else if (sum === point) {
-                balance -= 100; // Loss
+                balance -= 100;
                 status.innerText = `Trefil jsi bod a prohrál jsi ${currentBet === "dontPass" ? "Don't Pass Line" : "Don't Come"} sázku!`;
                 resetGame();
             }
         }
     }
 
-    // Update balance
     document.getElementById("balance").innerText = balance;
 }
 
-// Reset game state
 function resetGame() {
     point = null;
     currentBet = null;

@@ -87,6 +87,22 @@ a:hover {
   width: 100%;
 }
 
+aside.rollButtons > div.oneThrow {
+  display: flex;
+  justify-content: center;
+}
+
+aside.rollButtons > div.oneThrow > button {
+  width: 5
+  60%;
+}
+
+aside > div.multiThrow{
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
 @keyframes roll {
   0% {
     transform: rotate(0deg);
